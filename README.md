@@ -54,7 +54,7 @@ Open `index.html` in Chrome, or serve the folder: `python3 -m http.server 8000` 
 1. Create a repository.
 2. Upload everything in this folder, keeping the `js/` and `assets/` folders, to the repository root.
 3. Go to **Settings, Pages**, choose **Deploy from a branch**, `main`, `/ (root)`, then Save.
-4. The game appears at `https://<your-username>.github.io/<repo-name>/` after a minute or two. Hard refresh if you see an old version.
+4. The game appears at `https://Kelvo618.github.io/Apex-Striker-3D after a minute or two. Hard refresh if you see an old version.
 
 The game loads Three.js r128 from cdnjs. To host it yourself, put `three.min.js` in `assets/` and change the script tag in `index.html`.
 
