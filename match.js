@@ -23,7 +23,7 @@ function swap(man){let b=null,d=1e9;teams[0].ps.forEach(p=>{if(p==ctrl||p.gk||p.
 function kick(p,dx,dz,sp,vy){ball.vx=dx*sp;ball.vz=dz*sp;ball.vy=vy;p.cdK=.45;if(owner==p)owner=null;lastP=p;snd('k')}
 function pass(p,thru){let[ix,iz,l]=p.team.home&&p==ctrl?inp():[0,0,0];let dx=l>.2?ix:p.fx,dz=l>.2?iz:p.fz,b=null,bs=-9,tx=0,tz=0;
  p.team.ps.forEach(t=>{if(t==p||t.red)return;let ex=t.x+(thru?t.vx*.9+p.team.side*5:0),ez=t.z+(thru?t.vz*.9:0);const rx=ex-p.x,rz=ez-p.z,d=Math.hypot(rx,rz)||1,c=(rx*dx+rz*dz)/d,s=(p.team.home&&p==ctrl?c*2:c+(rx*p.team.side>0?.4:0))-d/45-(t.gk?1:0);if((c>.35||!(p.team.home&&p==ctrl))&&s>bs&&d>3){bs=s;b=t;tx=rx;tz=rz}});
- if(b){const d=Math.hypot(tx,tz)||1,n=(100-p.a.pas)/900*(p.team.home?1:DIFF[SV.diff].acc);dx=tx/d+(rnd()-.5)*n*2;dz=tz/d+(rnd()-.5)*n*2;const sp=cl(8+d*.85,10,thru?30:26)*(.8+p.a.pas/400);kick(p,dx,dz,sp,.4)}else{const d=Math.hypot(dx,dz)||1;kick(p,dx/d,dz/d,14,.3)}
+ if(b){const d=Math.hypot(tx,tz)||1,n=(100-p.a.pas)/900*(p.team.home?1:DIFF[SV.diff].acc);dx=tx/d+(rnd()-.5)*n*2;dz=tz/d+(rnd()-.5)*n*2;const sp=cl(8+d*.85,10,thru?30:26)*(.8+p.a.pas/400);kick(p,dx,dz,sp,.4);if(p==ctrl&&p.team.home){ctrl=b;M.lk=clk+1.5}}else{const d=Math.hypot(dx,dz)||1;kick(p,dx/d,dz/d,14,.3)}
  M.mt=0}
 function shoot(p,pw,human){const s=p.team.side,gx=s*HW;let zt;if(human){const iz=inp()[1];zt=cl(iz*8+(rnd()-.5)*2,-4.3,4.3)}else zt=(rnd()<.5?-1:1)*(2.2+rnd()*2);
  const dx=gx-p.x,dz=zt-p.z,d=Math.hypot(dx,dz)||1,n=(100-p.a.sht)/700*(human||p.team.home?1:DIFF[SV.diff].acc);kick(p,dx/d+(rnd()-.5)*n,dz/d+(rnd()-.5)*n*1.5,(14+pw*17)*(.85+p.a.sht/330),1+pw*pw*4*rnd())}
@@ -42,7 +42,7 @@ function frame(now){requestAnimationFrame(frame);if(!M||paused){last=now;return}
  for(let i=0;i<players.length;i++)for(let j=i+1;j<players.length;j++){const a=players[i],b=players[j],dx=b.x-a.x,dz=b.z-a.z,d=Math.hypot(dx,dz);if(d<.9&&d>.01){const k=(.9-d)/2/d;a.x-=dx*k;a.z-=dz*k;b.x+=dx*k;b.z+=dz*k}}
  if(M.st=='play'||M.st=='goal')ballStep(dt);
  if(M.st=='restart'&&M.taker){ball.x=M.taker.x+M.taker.fx;ball.z=M.taker.z;ball.vx=ball.vz=0}
- if(M.st=='play'){clearTimeout(0);if(clk-lastSw>.4&&owner&&owner.team!=T0||clk-lastSw>.4&&!owner){lastSw=clk;swap(false)}if(owner&&owner.team==T0)ctrl=owner}
+ if(M.st=='play'){clearTimeout(0);if(clk>(M.lk||0)&&(clk-lastSw>.4&&owner&&owner.team!=T0||clk-lastSw>.4&&!owner)){lastSw=clk;swap(false)}if(owner&&owner.team==T0)ctrl=owner}
  players.forEach(p=>{const g=p.g;g.position.set(p.x,0,p.z);g.rotation.y=Math.atan2(p.fx,p.fz);const sp=Math.hypot(p.vx,p.vz);p.ph+=sp*dt*2.2;const sw=Math.sin(p.ph)*Math.min(1,sp/4);p.legs[0].rotation.x=sw;p.legs[1].rotation.x=-sw;p.arms[0].rotation.x=-sw*.8;p.arms[1].rotation.x=sw*.8});
- if(ctrl){ring.position.set(ctrl.x,3.1+Math.sin(clk*6)*.12,ctrl.z);ring.rotation.y=clk*3}
+ if(ctrl){ring.position.set(ctrl.x,3.5+Math.sin(clk*6)*.12,ctrl.z);ring.rotation.y=clk*3}
  hud();render(dt)}

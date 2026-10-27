@@ -1,7 +1,7 @@
 "use strict";
 let cardTxt='';function card(p){cardTxt='';const r=rnd();if(r<.04||(p.yc==1&&r<.35)){p.red=1;cardTxt=' · RED CARD '+p.name;p.g.visible=false;p.x=p.z=999;if(ctrl==p)swap(true)}else if(r<.3){p.yc=(p.yc||0)+1;cardTxt=' · YELLOW '+p.name}}
 function mv(p,tx,tz,dt,sp){const dx=tx-p.x,dz=tz-p.z,d=Math.hypot(dx,dz);let vx=0,vz=0;if(d>.4){const s=(4.2+p.a.spd*.045)*(sp&&p.st>5?1.3:1)*(.75+.25*p.st/100)*(p.team.home?1:DIFF[SV.diff].spd);vx=dx/d*s;vz=dz/d*s}
- p.vx+=(vx-p.vx)*Math.min(1,8*dt);p.vz+=(vz-p.vz)*Math.min(1,8*dt);p.st=cl(p.st+(sp&&d>.5?-14:6)*dt,0,100)}
+ p.vx+=(vx-p.vx)*Math.min(1,11*dt);p.vz+=(vz-p.vz)*Math.min(1,11*dt);p.st=cl(p.st+(sp&&d>.5?-14:6)*dt,0,100)}
 function ai(p,dt){const T=p.team,oT=teams[T===teams[0]?1:0],s=T.side,own=owner&&owner.team==T,opn=owner&&owner.team!=T;p.think-=dt;
  if(p.gk){if(owner==p){mv(p,p.x,p.z,dt,0);if(p.think<=0){p.think=.6;pass(p,0)}return}const bx=-s*(Math.abs(ball.x-(-s*HW))<16?44.5:47.5);mv(p,bx,cl(ball.z*.35,-4.5,4.5),dt,0);return}
  if(owner==p){const gx=s*HW;let dx=gx-p.x,dz=-p.z*.3,o=nearest(oT,p.x,p.z),od=Math.hypot(o.x-p.x,o.z-p.z);if(od<5){dz+=(p.z-o.z>=0?1:-1)*12}const d=Math.hypot(dx,dz)||1;mv(p,p.x+dx/d*5,p.z+dz/d*5,dt,od<9);

@@ -35,3 +35,4 @@ input{font:inherit;color:#fff;background:#0d1d44;border:1px solid #4df;border-ra
 .tb{background:#0b1a14cc;border:4px solid #fff;font-weight:800;font-size:13px}
 .tb[data-a=sprint]{border-color:#3de0e0}.tb[data-a=pass]{border-color:#4fe08a}.tb[data-a=shoot]{border-color:#ff5a4a}.tb[data-a=tackle]{border-color:#ffd23a}.tb[data-a=thru]{border-color:#9fe}.tb[data-a=switch]{border-color:#c9f}
 #joy{background:transparent;border:3px solid #fffc}#knob{background:#14281ecc;border:6px solid #ddd}
+#joy{pointer-events:none}
