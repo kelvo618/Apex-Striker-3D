@@ -30,7 +30,7 @@ Open `index.html` in Chrome. For installable/PWA behaviour, serve the folder ins
 1. Create a new GitHub repository (for example `apex-striker`).
 2. Upload everything in this folder (`index.html`, `manifest.json`, `assets/`, `README.md`, `LICENSE`, `.nojekyll`, `.gitignore`) to the repository root.
 3. Go to **Settings → Pages**, set Source to **Deploy from a branch**, choose `main` and `/ (root)`, then Save.
-4. After a minute your game is live at `https://<your-username>.github.io/<repo-name>/`.
+4. After a minute your game is live at `https://Kelvo618.github.io/Apex Striker 3D.
 
 ## Offline / no CDN
 The game loads Three.js r128 from cdnjs. To self-host it, download `three.min.js` r128 into `assets/` and change the script tag in `index.html` to `<script src="assets/three.min.js"></script>`.
