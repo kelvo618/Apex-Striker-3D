@@ -30,20 +30,20 @@ Landscape only. Phones request fullscreen and lock orientation when a match star
 index.html      page and menus
 style.css       styles
 manifest.json   PWA/landscape settings
-assets/         icon
-js/data.js      constants, teams, formations, saves
-js/audio.js     Web Audio sounds
-js/ui.js        menus and settings
-js/career.js    career, shop, create player
-js/controls.js  keyboard, touch joystick and buttons
-js/stadium.js   3D pitch, stadium, renderer setup
-js/team.js      teams, tactics, 3D players
-js/match.js     match flow, passing, shooting, tackling, cards, restarts
-js/playerAI.js  movement and AI decisions
-js/ball.js      ball physics, goals, saves
-js/camera.js    HUD and broadcast camera
-js/results.js   full-time, pause, quit
-js/main.js      start-up
+icon.svg       icon
+data.js      constants, teams, formations, saves
+audio.js     Web Audio sounds
+ui.js        menus and settings
+career.js    career, shop, create player
+controls.js  keyboard, touch joystick and buttons
+stadium.js   3D pitch, stadium, renderer setup
+team.js      teams, tactics, 3D players
+match.js     match flow, passing, shooting, tackling, cards, restarts
+playerAI.js  movement and AI decisions
+ball.js      ball physics, goals, saves
+camera.js    HUD and broadcast camera
+results.js   full-time, pause, quit
+main.js      start-up
 ```
 Scripts are plain files loaded in order, so there is nothing to compile.
 
@@ -54,7 +54,7 @@ Open `index.html` in Chrome, or serve the folder: `python3 -m http.server 8000` 
 1. Create a repository.
 2. Upload everything in this folder, keeping the `js/` and `assets/` folders, to the repository root.
 3. Go to **Settings, Pages**, choose **Deploy from a branch**, `main`, `/ (root)`, then Save.
-4. The game appears at `https://Kelvo618.github.io/Apex-Striker-3D after a minute or two. Hard refresh if you see an old version.
+4. The game appears at `https://<your-username>.github.io/<repo-name>/` after a minute or two. Hard refresh if you see an old version.
 
 The game loads Three.js r128 from cdnjs. To host it yourself, put `three.min.js` in `assets/` and change the script tag in `index.html`.
 
@@ -63,3 +63,5 @@ No offside, penalties, free-kick aiming, crosses or headers yet. No replays, wea
 
 ## Roadmap
 Stage 2: set pieces and offside. Stage 3: Practice, full tournament, Quick Match flow. Stage 4: squad management, transfers, multi-season career. Stage 5: replays, stats, Phantom Mode, weather, stadiums.
+
+Note: this is the flat version, with all files in one folder (no js/ or assets/ folders), so it can be uploaded from a phone in one go.
