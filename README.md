@@ -1,14 +1,17 @@
 # Apex Striker 3D
 
-A 3D arcade 7-a-side football game that runs in the browser (Chrome, desktop and Android). No backend, no build step. All teams, players and crests are fictional.
+An original 3D arcade football game for the browser (Chrome, desktop and Android). No backend and no build step. All clubs, players and crests are fictional.
 
-## Modes
-- **Exhibition**: pick any two teams and a formation.
-- **Career**: 5-round season against the other teams (3 pts win, 1 draw). Coin bonus at season end.
-- **Tournament**: semi-final then final cup.
-- **Player Shop**: spend coins on star players; they join your team automatically.
-- **Create Player**: set name, position, build and skin tone; your player is added to your team.
-- Progress, coins, settings and purchases are saved in `localStorage`.
+## Modes and features
+- **Exhibition**: pick two clubs, a formation, difficulty and tactics.
+- **Career**: 5-round season with a points table and coin bonus.
+- **Tournament**: semi-final and final cup.
+- **Player Shop** and **Create Player**: buy stars with coins and build your own player.
+- 11-a-side matches with 6 formations: 4-3-3, 4-4-2, 4-2-3-1, 3-5-2, 3-4-3, 5-3-2.
+- Tactics: attacking style (Balanced, Possession, Fast attack, Counter), defensive style (Balanced, High press, Mid block, Deep defence) and mentality (Defensive to Ultra attacking).
+- Difficulty: Easy, Normal, Hard, Legendary (changes AI speed, tackling and shot accuracy).
+- Fouls with yellow and red cards (red cards leave the opponent or you a player short).
+- Progress, coins, settings and tactics are saved in `localStorage`.
 
 ## Controls
 | Action | Keyboard | Touch |
@@ -20,26 +23,43 @@ A 3D arcade 7-a-side football game that runs in the browser (Chrome, desktop and
 | Tackle | Space | TACKLE |
 | Switch player | E | SWAP |
 
-The game is landscape-only; on phones it requests fullscreen and locks orientation when a match starts.
+Landscape only. Phones request fullscreen and lock orientation when a match starts.
+
+## Project structure
+```
+index.html      page and menus
+style.css       styles
+manifest.json   PWA/landscape settings
+assets/         icon
+js/data.js      constants, teams, formations, saves
+js/audio.js     Web Audio sounds
+js/ui.js        menus and settings
+js/career.js    career, shop, create player
+js/controls.js  keyboard, touch joystick and buttons
+js/stadium.js   3D pitch, stadium, renderer setup
+js/team.js      teams, tactics, 3D players
+js/match.js     match flow, passing, shooting, tackling, cards, restarts
+js/playerAI.js  movement and AI decisions
+js/ball.js      ball physics, goals, saves
+js/camera.js    HUD and broadcast camera
+js/results.js   full-time, pause, quit
+js/main.js      start-up
+```
+Scripts are plain files loaded in order, so there is nothing to compile.
 
 ## Run locally
-Open `index.html` in Chrome. For installable/PWA behaviour, serve the folder instead:
-`python3 -m http.server 8000` then visit http://localhost:8000
+Open `index.html` in Chrome, or serve the folder: `python3 -m http.server 8000` then visit http://localhost:8000
 
 ## Deploy to GitHub Pages
-1. Create a new GitHub repository (for example `apex-striker`).
-2. Upload everything in this folder (`index.html`, `manifest.json`, `assets/`, `README.md`, `LICENSE`, `.nojekyll`, `.gitignore`) to the repository root.
-3. Go to **Settings → Pages**, set Source to **Deploy from a branch**, choose `main` and `/ (root)`, then Save.
-4. After a minute your game is live at `https://Kelvo618.github.io/Apex-Striker-3D
+1. Create a repository.
+2. Upload everything in this folder, keeping the `js/` and `assets/` folders, to the repository root.
+3. Go to **Settings, Pages**, choose **Deploy from a branch**, `main`, `/ (root)`, then Save.
+4. The game appears at `https://<your-username>.github.io/<repo-name>/` after a minute or two. Hard refresh if you see an old version.
 
-## Offline / no CDN
-The game loads Three.js r128 from cdnjs. To self-host it, download `three.min.js` r128 into `assets/` and change the script tag in `index.html` to `<script src="assets/three.min.js"></script>`.
-
-## Graphics settings
-Low, Medium and High change render resolution, shadows and crowd density. Use Low on older phones.
+The game loads Three.js r128 from cdnjs. To host it yourself, put `three.min.js` in `assets/` and change the script tag in `index.html`.
 
 ## Known limitations
-7-a-side only; no practice mode or radar yet; goalposts are not solid; basic AI; players are simple procedural models.
+No offside, penalties, free-kick aiming, crosses or headers yet. No replays, weather, extra stadiums or transfer market yet. Players are simple procedural models, and goalposts are not solid.
 
 ## Roadmap
-Practice mode, radar, post collisions, offside, more formations, split code into modules, real player models.
+Stage 2: set pieces and offside. Stage 3: Practice, full tournament, Quick Match flow. Stage 4: squad management, transfers, multi-season career. Stage 5: replays, stats, Phantom Mode, weather, stadiums.
